@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>tech.simter.file</groupId>
+    <artifactId>simter-file-converter-parent</artifactId>
+    <version>${revision}</version>
+    <relativePath>../simter-file-converter-parent</relativePath>
+  </parent>
+  <artifactId>simter-file-converter-service-impl</artifactId>
+  <packaging>jar</packaging>
+  <description>Service Implementation</description>
+  <dependencies>
+    <dependency>
+      <groupId>tech.simter.file</groupId>
+      <artifactId>simter-file-converter-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.jacob</groupId>
+      <artifactId>jacob</artifactId>
+      <version>1.20</version>
+    </dependency>
+  </dependencies>
+  <url>https://github.com/simter/simter-file-converter/tree/master/simter-file-converter-service-impl</url>
+  <scm>
+    <url>https://github.com/simter/simter-file-converter.git</url>
+  </scm>
+  <developers>
+    <developer>
+      <name>RJ.Hwang</name>
+      <email>rongjihuang@gmail.com</email>
+    </developer>
+  </developers>
+</project>

@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>tech.simter.file</groupId>
+    <artifactId>simter-file-converter</artifactId>
+    <version>${revision}</version>
+    <relativePath>..</relativePath>
+  </parent>
+  <artifactId>simter-file-converter-bom</artifactId>
+  <packaging>pom</packaging>
+  <description>BOM</description>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>tech.simter.file</groupId>
+        <artifactId>simter-file-converter-core</artifactId>
+        <version>${simter-file-converter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>tech.simter.file</groupId>
+        <artifactId>simter-file-converter-service-impl</artifactId>
+        <version>${simter-file-converter.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>tech.simter.file</groupId>
+        <artifactId>simter-file-converter-rest-webflux</artifactId>
+        <version>${simter-file-converter.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <url>https://github.com/simter/simter-file-converter/tree/master/simter-file-converter-bom</url>
+  <scm>
+    <url>https://github.com/simter/simter-file-converter.git</url>
+  </scm>
+  <developers>
+    <developer>
+      <name>RJ.Hwang</name>
+      <email>rongjihuang@gmail.com</email>
+    </developer>
+  </developers>
+
+</project>

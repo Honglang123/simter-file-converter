@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>tech.simter.file</groupId>
+    <artifactId>simter-file-converter-parent</artifactId>
+    <version>${revision}</version>
+    <relativePath>../simter-file-converter-parent</relativePath>
+  </parent>
+  <artifactId>simter-file-converter-core</artifactId>
+  <packaging>jar</packaging>
+  <description>Core API</description>
+  <dependencies>
+    <dependency>
+      <groupId>tech.simter</groupId>
+      <artifactId>simter-exception</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>tech.simter</groupId>
+      <artifactId>simter-kotlin</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlinx</groupId>
+      <artifactId>kotlinx-serialization-json</artifactId>
+    </dependency>
+  </dependencies>
+  <url>https://github.com/simter/simter-file-converter/tree/master/simter-file-converter-core</url>
+  <scm>
+    <url>https://github.com/simter/simter-file-converter.git</url>
+  </scm>
+  <developers>
+    <developer>
+      <name>RJ.Hwang</name>
+      <email>rongjihuang@gmail.com</email>
+    </developer>
+  </developers>
+</project>
