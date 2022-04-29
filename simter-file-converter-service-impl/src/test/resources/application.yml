@@ -1,0 +1,9 @@
+simter-file-converter:
+  from-root-dir: D://gfdata//file
+  to-root-dir: D://gfdata//file//convert
+spring.main.banner-mode: 'off'
+logging:
+  file.name: target/test.log
+  level: # TRACE < DEBUG < INFO < WARN < ERROR < FATAL < OFF
+    root: ERROR
+    tech.simter.file.converter: WARN
