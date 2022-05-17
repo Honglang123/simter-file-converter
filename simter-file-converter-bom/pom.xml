@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>tech.simter.file</groupId>
+    <groupId>tech.simter.file.converter</groupId>
     <artifactId>simter-file-converter</artifactId>
     <version>${revision}</version>
     <relativePath>..</relativePath>
@@ -13,17 +13,17 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>tech.simter.file</groupId>
+        <groupId>tech.simter.file.converter</groupId>
         <artifactId>simter-file-converter-core</artifactId>
         <version>${simter-file-converter.version}</version>
       </dependency>
       <dependency>
-        <groupId>tech.simter.file</groupId>
+        <groupId>tech.simter.file.converter</groupId>
         <artifactId>simter-file-converter-service-impl</artifactId>
         <version>${simter-file-converter.version}</version>
       </dependency>
       <dependency>
-        <groupId>tech.simter.file</groupId>
+        <groupId>tech.simter.file.converter</groupId>
         <artifactId>simter-file-converter-rest-webflux</artifactId>
         <version>${simter-file-converter.version}</version>
       </dependency>
