@@ -9,11 +9,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.util.StringUtils
 import reactor.core.publisher.Mono
-import tech.simter.file.converter.core.ExcelSaveFormat
-import tech.simter.file.converter.core.FileConverterService
-import tech.simter.file.converter.core.PowerPointSaveFormat
-import tech.simter.file.converter.core.WordSaveFormat
-import java.io.FileNotFoundException
+import tech.simter.file.converter.core.*
 import java.nio.file.Paths
 import java.rmi.RemoteException
 import java.util.*
@@ -30,26 +26,31 @@ class FileConverterServiceImpl @Autowired constructor(
 ) : FileConverterService {
   private val logger = LoggerFactory.getLogger(FileConverterServiceImpl::class.java)
 
-  override fun convert(fromFile: String, toFile: String, password: Optional<String>): Mono<Void> {
+  override fun convert(fromFile: String, toFile: String, password: Optional<String>): Mono<Conversion> {
     logger.warn("----Convert Starter----")
+
     // 获取原始文件的绝对路径
     val fromPath = Paths.get(fromRootDir, fromFile)
-    if (!fromPath.toFile().exists()) return Mono.error(FileNotFoundException("$fromPath 来源文件未找到！"))
+    if (!fromPath.toFile().exists()) {
+      logger.warn("----Convert End：$fromPath 来源文件未找到！----")
+      return Mono.just(Conversion(false, "$fromPath 来源文件未找到！"))
+    }
 
     // 获取转换后文件的绝对路径
     val toPath = Paths.get(toRootDir, toFile)
     if (!toPath.toFile().parentFile.exists()) toPath.toFile().parentFile.mkdirs()
     logger.warn("Convert Info：fromFile=${fromPath}，toFile=${toPath}")
 
-    return try {
+    val conversion = try {
       convertFormat(fromPath.toString(), toPath.toString(), password)
       logger.warn("----Convert End----")
-      Mono.empty<Void>()
+      Conversion(true, "转换成功")
     } catch (e: RemoteException) {
       logger.warn("Convert Error：${e.message}")
-
-      Mono.error<Void>(RemoteException("来源文件未找到！"))
+      Conversion(false, e.message)
     }
+
+    return Mono.just(conversion)
   }
 
   /**
@@ -64,31 +65,35 @@ class FileConverterServiceImpl @Autowired constructor(
     val fromFormat = StringUtils.getFilenameExtension(fromPath)!!.toLowerCase()
     val toFormat = StringUtils.getFilenameExtension(toPath)!!.toLowerCase()
 
-    // 初始化 com 线程
-    ComThread.InitSTA()
     var app: ActiveXComponent? = null
     try {
       when {
         isWordFormat(fromFormat) -> {
           val format = WordSaveFormat.values()
-            .firstOrNull { it.format == toFormat } ?: throw RemoteException("不支持将 Word 转换为 $toFormat 格式")
+            .firstOrNull { it.format == toFormat } ?: throw RemoteException("不支持将 .$fromFormat 文件转换为 .$toFormat 文件")
 
+          // 初始化 com 线程
+          ComThread.InitSTA()
           // 打开 Word 应用程序
           app = ActiveXComponent("Word.Application")
           convertByWord(app, fromPath, toPath, format.value, password.orElse("bc"))
         }
         isExcelFormat(fromFormat) -> {
           val format = ExcelSaveFormat.values()
-            .firstOrNull { it.format == toFormat } ?: throw RemoteException("不支持将 Excel 转换为 $toFormat 格式")
+            .firstOrNull { it.format == toFormat } ?: throw RemoteException("不支持将 .$fromFormat 文件转换为 .$toFormat 文件")
 
+          // 初始化 com 线程
+          ComThread.InitSTA()
           // 打开 Excel 应用程序
           app = ActiveXComponent("Excel.Application")
           convertByExcel(app, fromPath, toPath, format.value, password.orElse("bc"))
         }
         isPowerPointFormat(fromFormat) -> {
           val format = PowerPointSaveFormat.values()
-            .firstOrNull { it.format == toFormat } ?: throw RemoteException("不支持将 PPT 转换为 $toFormat 格式")
+            .firstOrNull { it.format == toFormat } ?: throw RemoteException("不支持将 .$fromFormat 文件转换为 .$toFormat 文件")
 
+          // 初始化 com 线程
+          ComThread.InitSTA()
           // 打开 PowerPoint 应用程序
           app = ActiveXComponent("PowerPoint.Application")
           convertByPowerPoint(app, fromPath, toPath, format.value, password.orElse("bc"))
