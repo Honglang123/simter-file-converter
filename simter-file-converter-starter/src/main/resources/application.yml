@@ -1,0 +1,45 @@
+simter-file-converter:
+  version: @project.version@
+  rest-context-path: @simter-file-converter.rest-context-path@
+  base-dir: @simter-file-converter.base-dir@
+  # main dependency libraries version
+  dependency-version:
+    simter: @simter.version@
+    kotlin: @kotlin.version@
+    spring-framework: @spring-framework.version@
+    spring-boot: @spring-boot.version@
+simter:
+  jwt:
+    secret-key: @simter.jwt.secret-key@
+    require-authorized: @simter.jwt.require-authorized@
+    exclude-paths: /static, /scheduler, /favicon.ico
+spring:
+  main.banner-mode: 'off'
+  application.name: @project.artifactId@-@project.version@
+server:
+  port: @server.port@
+  servlet.context-path: /
+  server-header: @project.artifactId@-@project.version@
+logging:
+  file.name: @logging.file@
+  #pattern.dateformat: yyyy-MM-dd HH:mm:ss.SSS,GMT+8:00
+  level: # TRACE < DEBUG < INFO < WARN < ERROR < FATAL < OFF
+    root: ERROR
+    tech.simter.embeddeddatabase: INFO # INFO - Starting embedded database: url=..., DEBUG - Load script
+    tech.simter.file.converter.starter: INFO # INFO - show active profiles and started time
+
+    #---- spring ----#
+    #org.springframework: WARN
+
+    #---- spring-boot ----#
+    #org.springframework.boot: WARN
+    org.springframework.boot.context.embedded: TRACE
+    org.springframework.boot.web.embedded.netty.NettyWebServer: INFO # INFO - show server port
+
+    #---- spring reactive web ----#
+    #org.springframework.http.client.reactive: DEBUG
+    #org.springframework.http.server.reactive: DEBUG
+    #org.springframework.web.reactive: DEBUG # debug to show mapped and matches routes
+
+    #---- reactor ----#
+    #reactor.ipc.netty: DEBUG # debug to show request/response
