@@ -17,5 +17,11 @@
       <groupId>tech.simter.file.converter</groupId>
       <artifactId>simter-file-converter-core</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>com.jacob</groupId>
+      <artifactId>jacob</artifactId>
+      <version>1.20</version>
+    </dependency>
   </dependencies>
 </project>
