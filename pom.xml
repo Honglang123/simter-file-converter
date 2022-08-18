@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>tech.simter</groupId>
+    <artifactId>simter-dependencies</artifactId>
+    <version>3.0.0-M4</version>
+    <!-- lookup parent from repository -->
+    <relativePath/>
+  </parent>
+  <groupId>tech.simter.file.converter</groupId>
+  <artifactId>simter-file-converter</artifactId>
+  <version>${revision}</version>
+  <modules>
+    <module>simter-file-converter-core</module>
+    <module>simter-file-converter-starter</module>
+    <module>simter-file-converter-parent</module>
+    <module>simter-file-converter-service-impl</module>
+    <module>simter-file-converter-bom</module>
+    <module>simter-file-converter-rest-webflux</module>
+    <module>simter-file-converter-dao-jacob</module>
+  </modules>
+  <packaging>pom</packaging>
+  <description>Builder</description>
+  <properties>
+    <revision>0.1-SNAPSHOT</revision>
+    <simter-file-converter.version>${revision}</simter-file-converter.version>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>flatten-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+</project>
